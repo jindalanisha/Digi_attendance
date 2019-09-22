@@ -15,7 +15,6 @@ app.use(session({secret: 'ssshhhhh'}));
 
 var con = mysql.createConnection({
   host: "localhost",
-  port: 3307,
   user: "root",
   password: "",
   database:'digi_attendance'
@@ -48,12 +47,34 @@ if(rows.length>0)
 	ssn.teachercode=user;
 	response.render('choose.html');
 }
-else
-   //popup.alert({content:'Please enter correct username and password'})
+
 }
 })
 });
 
+app.post('/studentlogin',function(request,response){
+	var user=request.body.uname;
+	var u_pass=request.body.passs;
+	con.query('SELECT * from student_login where rollno=? and password=?',[user,u_pass],function(err,rows){
+		if(err)
+			throw err;
+		else
+		{
+			if(rows.length>0)
+			{
+				funky();
+			}
+		}
+	});
+	function funky()
+	{
+		con.query('Select * from student where rollno=?',[user],function(err,rows){
+			if(err)
+				throw err;
+			response.render('student_login.html',{'data':rows});
+		});
+	}
+});
 
 app.post('/studentlogin',function(request,response){
          response.render('choose.html');
@@ -62,7 +83,7 @@ app.post('/studentlogin',function(request,response){
 
 
 app.get('/classes',function(request,response){
-	con.query('Select distinct course_code from classes where teacher_code=?',[ssn.teachercode],function(err,rows){
+	con.query('Select distinct course_code,department,section from classes where teacher_code=?',[ssn.teachercode],function(err,rows){
 		if(err)
 		console.log(err);
 	console.log(rows);
@@ -71,10 +92,20 @@ app.get('/classes',function(request,response){
 	
 })
 app.get('/labs',function(request,response){
-	response.render('courses.html');
+	con.query('Select distinct course_code,department,section from labs where teacher_code=?',[ssn.teachercode],function(err,rows){
+		if(err)
+		console.log(err);
+	console.log(rows);
+	response.render('courses.html',{data:rows});
+	})
 })
 app.get('/tuts',function(request,response){
-	response.render('courses.html');
+	con.query('Select distinct course_code,department,section from tuts where teacher_code=?',[ssn.teachercode],function(err,rows){
+		if(err)
+		console.log(err);
+	console.log(rows);
+	response.render('courses.html',{data:rows});
+	})
 })
 
 
