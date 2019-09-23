@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Required meta tags -->
+    	<meta charset="utf-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    	<!-- Bootstrap CSS -->
+    	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    	<style>
+    		*{
+    			font-family: cursive;
+    		}
+    		body{
+    			min-height: 100vh;
+    			margin: 0;
+    			padding: 0;
+    			background: url(https://i.pinimg.com/originals/ea/3f/d3/ea3fd3102ccf575e3c33954f73eab78d.jpg);
+    			background-attachment: fixed;
+    			background-size: cover;
+    			background-position: center;
+    			background-repeat: no-repeat;
+    		}
+    		nav{
+    			background-color: red;
+    			height:10vh;
+    			position: relative;
+    			box-shadow:0 3px black;
+    		}
+    		.hamburger{
+    			position: absolute;
+    			cursor: pointer;
+    			top:50%;
+    			left:1%;
+    			transform: translate(-1%,-50%);
+    			z-index: 2;
+    		}
+    		.line{
+    			width:30px;
+    			height:3px;
+    			background-color: white;
+    			margin: 5px;
+    			transition: all 0.5s ease;
+    		}
+    		.bar1-toggle{
+    			transform: rotate(45deg) translate(11px,11px);
+    		}
+    		.bar2-toggle{
+    			opacity:0.0;
+    		}
+    		.bar3-toggle{
+    			transform: rotate(-45deg) ;
+    		}
+    		.nav-links{
+    			width:20%;
+    			list-style: none;
+    			display:flex;
+    			flex-direction: column;
+    			height: 100%;
+    			align-items:center;
+    			justify-content: space-between;
+    			margin: 0;
+    			padding: 0;
+    			position: fixed;
+    			background-color:blue;
+    			transition: all 0.8s linear;
+    			clip-path: circle(10px at -100% 50%);
+    			-webkit-clip-path:circle(10px at -100% 50%);
+    		}
+    		.nav-links.open{
+    			clip-path: circle(800px at -100% 50%);
+    			-webkit-clip-path:circle(800px at -10% 50%);
+    			box-shadow: 5px 5px lightgrey;
+    		}
+    		.nav-links li{
+    			padding: 0;
+    			margin: 0;
+    			transition: all 0.3s ease;
+    		}
+    		.nav-links li:hover{
+    			transform: translate(10px,10px);
+    		}
+    		.submit-btn{
+    			position: relative;
+    			text-decoration:none;
+    			color: white;
+    			padding: 0;
+    			margin: 0;
+    			font-weight: bold;
+    			font-size: 28px;
+    			color:white;
+    		}
+    		.links-div{
+    			margin-top: 60px;
+    			display: flex;
+    			flex-direction: column;
+    			width: 100%;
+    			height: 60%;
+    			align-items: center;
+    			justify-content: space-around;
+    		}
+    		.submit-btn:hover{
+    			color:orange;
+    		}
+    		.btn-div{
+    			width:100%;
+    			height:40%;
+    			display: flex;
+    			align-items: center;
+    			justify-content: center;
+    		}
+    		.signout{
+    			width:40%;
+    			height:40px;
+    			position: relative;
+    			top:20px;
+    			cursor:pointer;
+    			color: red;
+    			font-weight: bold;
+    			border-radius: 5%;
+    			border:3px solid red;
+    			font-size: 20px;
+    			transition: all 0.3s ease;
+    			box-shadow: 3px 3px black;
+    			background-color: lime;
+    		}
+    		.signout:hover{
+    			transform: translate(10px,10px);
+    			box-shadow: none;
+
+    		}
+    		.signout:focus{
+    			outline: none;
+    		}
+    		.cool-links::after{
+    			content:'';
+    			display: block;
+    			width:0;
+    			height:2px;
+    			background-color:white;
+    			transition: width .3s;
+    		}
+    		.cool-links:hover::after{
+    			width:100%;
+    			transition: width .3s;
+    		}
+    		.submit-btn{
+    			background: none;
+    			border:none;
+    			cursor: pointer;
+    			font-size: 22px;
+    		}
+    	</style>
+	</head>
+	<body>
+		<nav>
+			<div class="hamburger">
+				<div class="line bar1"></div>
+				<div class="line bar2"></div>
+				<div class="line bar3"></div>
+			</div>
+			<ul class="nav-links">
+				<form class="links-div" action="http://www.google.com">
+					<li>
+						<button type="submit" class="submit-btn cool-links" name="which" value="1">Add Lecture</button>
+					</li>
+					<li>
+						<button type="submit" class="submit-btn cool-links" name="which" value="2">Add Lab</button>
+					</li>
+					<li>
+						<button type="submit" class="submit-btn cool-links" name="which" value="3">Add Tutorial</button>
+					</li>
+				</form>
+				<form class="btn-div" action="http://www.google.com">
+					<button class="signout" type="submit">Logout</button>
+				</form>
+			</ul>
+		</nav>
+
+
+
+
+
+
+
+
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	    <script  type="text/javascript">
+	    	const bar1=document.querySelector(".bar1");
+	    	const bar2=document.querySelector(".bar2");
+	    	const bar3=document.querySelector(".bar3");
+	    	const navlinks=document.querySelector(".nav-links");
+	    	const hamburger=document.querySelector(".hamburger");
+	    	//////////////
+	    	/////////
+	    	///////////
+	    	//////////////////
+	    	////////////////////
+	    	//////////////////
+	    	//////////////
+	    	
+	    	/////////
+	    	///////////
+	    	//////////////////
+	    	////////////////////
+	    	//////////////////
+	    	hamburger.addEventListener('click',()=>{
+	    		bar1.classList.toggle("bar1-toggle");
+	    		bar2.classList.toggle("bar2-toggle");
+	    		bar3.classList.toggle("bar3-toggle");
+				navlinks.classList.toggle("open");
+	    	});
+	    </script>
+	</body>
+</html>
