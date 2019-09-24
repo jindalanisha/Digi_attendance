@@ -302,7 +302,7 @@
             @media screen and (min-width:1200px)
             {
                 .courses{
-                    margin-left: 300px;
+                    margin-left: 200px;
                     margin-right: 0px;
                     font-size: 40px;
                 }
@@ -311,7 +311,7 @@
                 transform:translate(30px);
                 }
                 .nav-links li a{
-                    font-size: 32px;
+                    font-size: 28px;
                 }
                 .welcome,.track{
                     font-size: 70px;
@@ -471,27 +471,26 @@
             <%var tutteacher_names=tt_names.split(':')%>
             <%var total_tuts=t_att.split(':')%>
 
+            <%var open_elective=open_data%>
             <% data.forEach((elem, index) => { %>
                 <%course_array=elem%>
             <% }) %>
             
                 <div class="courses">
-                    <li data-id="0"><a href="#" class="cool-links"><%=course_names[0] %></a></li>
-                    <li data-id="1"><a href="#" class="cool-links"><%=course_names[1] %></a></li>
-                    <li data-id="2"><a href="#" class="cool-links"><%=course_names[2] %></a></li>
+                    <li data-id="0" style="text-align: center;"><a href="#" class="cool-links"><%=course_names[0] %></a></li>
+                    <li data-id="1" style="text-align: center;"><a href="#" class="cool-links"><%=course_names[1] %></a></li>
+                    <li data-id="2" style="text-align: center;"><a href="#" class="cool-links"><%=course_names[2] %></a></li>
                 </div>
                 <div class="courses">
-                    <li data-id="3"><a href="#" class="cool-links"><%=course_names[3] %></a></li>
-                    <li data-id="4"><a href="#" class="cool-links"><%=course_names[4] %></a></li>
-                    <li data-id="5"><a href="#" class="cool-links"><%=course_names[5] %></a></li>
+                    <li data-id="3" style="text-align: center;"><a href="#" class="cool-links"><%=course_names[3] %></a></li>
+                    <li data-id="4" style="text-align: center;"><a href="#" class="cool-links"><%=course_names[4] %></a></li>
+                    <li data-id="5" style="text-align: center;"><a href="#" class="cool-links"><%=course_names[5] %></a></li>
+                    <li data-id="5" style="text-align: center;"><a href="#" class="cool-links"><%=openc %></a></li>
                 </div>
-                <%if(course_names.length>6)%>
-                {
-                    <div class="courses">
-                    <li data-id="6"><a href="#" class="cool-links"><%=course_names[6]%></a></li>
-                    <li data-id="7"><a href="#" class="cool-links"><%=course_names[7] %></a></li>
-                    </div>
-                }
+                <div class="courses">
+                    <li data-id="6" style="text-align: center;"><a href="#" class="cool-links"><%=course_names[6]%></a></li>
+                    <li data-id="7" style="text-align: center;"><a href="#" class="cool-links"><%=course_names[7]%></a></li>
+                </div>
             </ul>
             <span class="home">
                 <i class="fas fa-home"></i>
@@ -758,17 +757,34 @@
             /////////
             /////////////////
             /////////////////////
-            ////////////////////
-
-            const courses=["<%=course_names[0] %>","<%=course_names[1] %>","<%=course_names[2] %>","<%=course_names[3] %>",
+            /////////////////////
+            if(<%=open_elective.length%>==3)
+            {
+                var courses=["<%=course_names[0] %>","<%=course_names[1] %>","<%=course_names[2] %>","<%=course_names[3] %>",
                     "<%=course_names[4] %>","<%=course_names[5] %>","<%=course_names[6] %>","<%=course_names[7] %>"];
 
-            const teachers=["<%=teacher_names[0] %>","<%=teacher_names[1] %>","<%=teacher_names[2] %>","<%=teacher_names[3] %>",
+                var teachers=["<%=teacher_names[0] %>","<%=teacher_names[1] %>","<%=teacher_names[2] %>","<%=teacher_names[3] %>",
                     "<%=teacher_names[4] %>","<%=teacher_names[5] %>","<%=teacher_names[6] %>","<%=teacher_names[7] %>"];
 
-            const attLec=["<%=course_array.course1.split(':')[1]%>","<%=course_array.course2.split(':')[1]%>","<%=course_array.course3.split(':')[1]%>","<%=course_array.course4.split(':')[1]%>","<%=course_array.course5.split(':')[1]%>","<%=course_array.course6.split(':')[1]%>","<%=course_array.course7.split(':')[1]%>","<%=course_array.course8.split(':')[1]%>"];
-            const totLec=[<%=total_classes[0]%>,<%=total_classes[1]%>,<%=total_classes[2]%>,<%=total_classes[3]%>,
-            <%=total_classes[4]%>,<%=total_classes[5]%>,<%=total_classes[6]%>,<%=total_classes[7]%>];
+                var attLec=["<%=course_array.course1.split(':')[1]%>","<%=course_array.course2.split(':')[1]%>","<%=course_array.course3.split(':')[1]%>","<%=course_array.course4.split(':')[1]%>","<%=course_array.course5.split(':')[1]%>","<%=course_array.course6.split(':')[1]%>","<%=course_array.course7.split(':')[1]%>","<%=course_array.course8.split(':')[1]%>"];
+
+                var totLec=[<%=total_classes[0]%>,<%=total_classes[1]%>,<%=total_classes[2]%>,<%=total_classes[3]%>,
+                <%=total_classes[4]%>,<%=total_classes[5]%>,<%=total_classes[6]%>,<%=total_classes[7]%>];
+
+            }
+            if(<%=open_elective.length%>==1)
+            {
+                var courses=["<%=course_names[0] %>","<%=course_names[1] %>","<%=course_names[2] %>","<%=course_names[3] %>",
+                    "<%=course_names[4] %>","<%=openc %>"];
+
+                var teachers=["<%=teacher_names[0] %>","<%=teacher_names[1] %>","<%=teacher_names[2] %>","<%=teacher_names[3] %>",
+                    "<%=teacher_names[4] %>","<%=open_elective[0].teacher_name%>"];
+
+                var attLec=["<%=course_array.course1.split(':')[1]%>","<%=course_array.course2.split(':')[1]%>","<%=course_array.course3.split(':')[1]%>","<%=course_array.course4.split(':')[1]%>","<%=course_array.course5.split(':')[1]%>","<%=course_array.openele.split(':')[1]%>"];
+
+                var totLec=[<%=total_classes[0]%>,<%=total_classes[1]%>,<%=total_classes[2]%>,<%=total_classes[3]%>,
+                <%=total_classes[4]%>,<%=open_elective[0].tot_class%>];
+            }
 
             ///////////////////
             ////////////////
@@ -777,12 +793,31 @@
             ///////////////////
             ///////////////////////
 
-            const coursesLab=["<%=course_names[0] %>","<%=course_names[1] %>","<%=course_names[2] %>","<%=course_names[3] %>","<%=course_names[4] %>","<%=course_names[5] %>","<%=course_names[6] %>","<%=course_names[7] %>"];
-            const teachersLab=["<%=labteacher_names[0] %>","<%=labteacher_names[1] %>","<%=labteacher_names[2] %>","<%=labteacher_names[3] %>",
+            if(<%=open_elective.length%>==3)
+            {
+                var coursesLab=["<%=course_names[0] %>","<%=course_names[1] %>","<%=course_names[2] %>","<%=course_names[3] %>","<%=course_names[4] %>","<%=course_names[5] %>","<%=course_names[6] %>","<%=course_names[7] %>"];
+
+                var teachersLab=["<%=labteacher_names[0] %>","<%=labteacher_names[1] %>","<%=labteacher_names[2] %>","<%=labteacher_names[3] %>",
                     "<%=labteacher_names[4] %>","<%=labteacher_names[5] %>","<%=labteacher_names[6] %>","<%=labteacher_names[7] %>"];
-            const attLab=["<%=course_array.course1.split(':')[2]%>","<%=course_array.course2.split(':')[2]%>","<%=course_array.course3.split(':')[2]%>","<%=course_array.course4.split(':')[2]%>","<%=course_array.course5.split(':')[2]%>","<%=course_array.course6.split(':')[2]%>","<%=course_array.course7.split(':')[2]%>","<%=course_array.course8.split(':')[2]%>"];
-            const totLab=[<%=total_labs[0]%>,<%=total_labs[1]%>,<%=total_labs[2]%>,<%=total_labs[3]%>,
-            <%=total_labs[4]%>,<%=total_labs[5]%>,<%=total_labs[6]%>,<%=total_labs[7]%>];
+
+                var attLab=["<%=course_array.course1.split(':')[2]%>","<%=course_array.course2.split(':')[2]%>","<%=course_array.course3.split(':')[2]%>","<%=course_array.course4.split(':')[2]%>","<%=course_array.course5.split(':')[2]%>","<%=course_array.course6.split(':')[2]%>","<%=course_array.course7.split(':')[2]%>","<%=course_array.course8.split(':')[2]%>"];
+                var totLab=[<%=total_labs[0]%>,<%=total_labs[1]%>,<%=total_labs[2]%>,<%=total_labs[3]%>,
+                <%=total_labs[4]%>,<%=total_labs[5]%>,<%=total_labs[6]%>,<%=total_labs[7]%>];
+
+            }
+            if(<%=open_elective.length%>==1)
+            {
+
+                var coursesLab=["<%=course_names[0] %>","<%=course_names[1] %>","<%=course_names[2] %>","<%=course_names[3] %>","<%=course_names[4] %>","<%=openc %>"];
+
+                var teachersLab=["<%=labteacher_names[0] %>","<%=labteacher_names[1] %>","<%=labteacher_names[2] %>","<%=labteacher_names[3] %>",
+                    "<%=labteacher_names[4] %>","<%=open_elective[0].teacher_name%>"];
+
+                var attLab=["<%=course_array.course1.split(':')[2]%>","<%=course_array.course2.split(':')[2]%>","<%=course_array.course3.split(':')[2]%>","<%=course_array.course4.split(':')[2]%>","<%=course_array.course5.split(':')[2]%>","<%=course_array.openele.split(':')[2]%>"];
+                var totLab=[<%=total_labs[0]%>,<%=total_labs[1]%>,<%=total_labs[2]%>,<%=total_labs[3]%>,
+                <%=total_labs[4]%>,<%=open_elective[0].tot_labs%>];
+            }
+
 
             ///////////////////
             ////////////////
@@ -791,12 +826,35 @@
             ///////////////////
             ///////////////////////
 
-            const coursesTut=["<%=course_names[0] %>","<%=course_names[1] %>","<%=course_names[2] %>","<%=course_names[3] %>","<%=course_names[4] %>","<%=course_names[5] %>","<%=course_names[6] %>","<%=course_names[7] %>"];
-            const teachersTut=["<%=tutteacher_names[0] %>","<%=tutteacher_names[1] %>","<%=tutteacher_names[2] %>","<%=tutteacher_names[3] %>",
+            if(<%=open_elective.length%>==3)
+            {
+                var coursesTut=["<%=course_names[0] %>","<%=course_names[1] %>","<%=course_names[2] %>","<%=course_names[3] %>","<%=course_names[4] %>","<%=course_names[5] %>","<%=course_names[6] %>","<%=course_names[7] %>"];
+
+                var teachersTut=["<%=tutteacher_names[0] %>","<%=tutteacher_names[1] %>","<%=tutteacher_names[2] %>","<%=tutteacher_names[3] %>",
                     "<%=tutteacher_names[4] %>","<%=tutteacher_names[5] %>","<%=tutteacher_names[6] %>","<%=tutteacher_names[7] %>"];
-            const attTut=["<%=course_array.course1.split(':')[3]%>","<%=course_array.course2.split(':')[3]%>","<%=course_array.course3.split(':')[3]%>","<%=course_array.course4.split(':')[3]%>","<%=course_array.course5.split(':')[3]%>","<%=course_array.course6.split(':')[3]%>","<%=course_array.course7.split(':')[3]%>","<%=course_array.course8.split(':')[3]%>"];
-            const totTut=[<%=total_tuts[0]%>,<%=total_tuts[1]%>,<%=total_tuts[2]%>,<%=total_tuts[3]%>,
-            <%=total_tuts[4]%>,<%=total_tuts[5]%>,<%=total_tuts[6]%>,<%=total_tuts[7]%>];
+
+                var attTut=["<%=course_array.course1.split(':')[3]%>","<%=course_array.course2.split(':')[3]%>","<%=course_array.course3.split(':')[3]%>","<%=course_array.course4.split(':')[3]%>","<%=course_array.course5.split(':')[3]%>","<%=course_array.course6.split(':')[3]%>","<%=course_array.course7.split(':')[3]%>","<%=course_array.course8.split(':')[3]%>"];
+
+                var totTut=[<%=total_tuts[0]%>,<%=total_tuts[1]%>,<%=total_tuts[2]%>,<%=total_tuts[3]%>,
+                    <%=total_tuts[4]%>,<%=total_tuts[5]%>,<%=total_tuts[6]%>,<%=total_tuts[7]%>];
+            }
+            if(<%=open_elective.length%>==1)
+            {
+
+                var coursesTut=["<%=course_names[0] %>","<%=course_names[1] %>","<%=course_names[2] %>","<%=course_names[3] %>","<%=course_names[4] %>","<%=openc %>"];
+
+                var teachersTut=["<%=tutteacher_names[0] %>","<%=tutteacher_names[1] %>","<%=tutteacher_names[2] %>","<%=tutteacher_names[3] %>",
+                    "<%=tutteacher_names[4] %>","<%=open_elective[0].teacher_name%>"];
+
+                var attTut=["<%=course_array.course1.split(':')[3]%>","<%=course_array.course2.split(':')[3]%>","<%=course_array.course3.split(':')[3]%>","<%=course_array.course4.split(':')[3]%>","<%=course_array.course5.split(':')[3]%>","<%=course_array.openele.split(':')[3]%>"];
+
+
+                var attLab=["<%=course_array.course1.split(':')[2]%>","<%=course_array.course2.split(':')[2]%>","<%=course_array.course3.split(':')[2]%>","<%=course_array.course4.split(':')[2]%>","<%=course_array.course5.split(':')[2]%>","<%=course_array.openele.split(':')[2]%>"];
+
+                var totTut=[<%=total_tuts[0]%>,<%=total_tuts[1]%>,<%=total_tuts[2]%>,<%=total_tuts[3]%>,
+                    <%=total_tuts[4]%>,<%=open_elective[0].tot_tuts%>];
+            }
+
             ///////////////////
             ////////////////
             //////////////////
@@ -809,8 +867,8 @@
                     welcome.style.display="none";
                     track.style.display="none";
                     profileIcon.style.display="block";
-                    sec_lab.style.display="flex";
-                    sec_tut.style.display="flex";
+                    
+                    
                     home.style.display="block";
                     navlinks.classList.toggle("open");
                     links.forEach(link=>{
@@ -827,17 +885,34 @@
                     totalatt.innerHTML=totLec[linkId];
                     filler.style.backgroundColor="red";
 
-                    course_lab.innerHTML=coursesLab[linkId]+" (Lab.)";
-                    teacher_lab.innerHTML=teachersLab[linkId];
-                    myatt_lab.innerHTML=attLab[linkId];
-                    totalatt_lab.innerHTML=totLab[linkId];
-                    filler_lab.style.backgroundColor="red";
 
-                    course_tut.innerHTML=coursesTut[linkId]+" (Tut.)";
-                    teacher_tut.innerHTML=teachersTut[linkId];
-                    myatt_tut.innerHTML=attTut[linkId];
-                    totalatt_tut.innerHTML=totTut[linkId];
-                    filler_tut.style.backgroundColor="red";
+                    if(attLab[linkId]!=-1)
+                    {
+                        sec_lab.style.display="flex";
+                        course_lab.innerHTML=coursesLab[linkId]+" (Lab.)";
+                        teacher_lab.innerHTML=teachersLab[linkId];
+                        myatt_lab.innerHTML=attLab[linkId];
+                        totalatt_lab.innerHTML=totLab[linkId];
+                        filler_lab.style.backgroundColor="red";
+                    }
+                    else
+                    {
+                        sec_lab.style.display="none";
+                    }
+
+                    if(attTut[linkId]!=-1)
+                    {
+                        sec_tut.style.display="flex";
+                        course_tut.innerHTML=coursesTut[linkId]+" (Tut.)";
+                        teacher_tut.innerHTML=teachersTut[linkId];
+                        myatt_tut.innerHTML=attTut[linkId];
+                        totalatt_tut.innerHTML=totTut[linkId];
+                        filler_tut.style.backgroundColor="red";
+                    }
+                    else
+                    {
+                        sec_tut.style.display="none";
+                    }
 
                     let my=attLec[linkId];
                     let total=totLec[linkId];
@@ -862,27 +937,30 @@
                     },15);
 
 
-                    let my1=attLab[linkId];
-                    let total1=totLab[linkId];
-                    let myper1=(my1/total1)*100;
-                    let wid1=0;
-                    let id1=setInterval(()=>{
-                        if(wid1>=myper1)
-                        {
-                            clearInterval(id1);
-                        }
-                        wid1++;
-                        filler_lab.style.width=wid1+"%";
-                        if(wid1>=90)
-                        {
-                            filler_lab.style.backgroundColor="lime";
-                        }
-                        else if(wid1>=75)
-                        {
-                            filler_lab.style.backgroundColor="yellow";
-                        }
-                        
-                    },15);
+                    if(attLab[linkId]!=-1)
+                    {
+                        let my1=attLab[linkId];
+                        let total1=totLab[linkId];
+                        let myper1=(my1/total1)*100;
+                        let wid1=0;
+                        let id1=setInterval(()=>{
+                            if(wid1>=myper1)
+                            {
+                                clearInterval(id1);
+                            }
+                            wid1++;
+                            filler_lab.style.width=wid1+"%";
+                            if(wid1>=90)
+                            {
+                                filler_lab.style.backgroundColor="lime";
+                            }
+                            else if(wid1>=75)
+                            {
+                                filler_lab.style.backgroundColor="yellow";
+                            }
+                            
+                        },15);
+                    }
 
 
 
